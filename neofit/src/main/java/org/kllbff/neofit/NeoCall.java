@@ -11,8 +11,10 @@ public class NeoCall {
     private ConverterManager converter;
     private Call call;
         
-    public NeoCall(Call call, ConverterManager converter) {
+    public NeoCall(Call call, NeoPlatform platform, ConverterManager converter) {
         this.call = call;
+        this.requestExecutor = platform.requestExecutor();
+        this.callbackExecutor = platform.callbackExecutor();
         this.converter = converter;
     }
     

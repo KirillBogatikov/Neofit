@@ -3,6 +3,8 @@ package org.kllbff.neofit;
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import org.kllbff.neofit.DefaultConverter.DefaultBodyFactory;
 import org.kllbff.neofit.DefaultConverter.DefaultFormDataFactory;
@@ -29,6 +31,7 @@ public class Neofit {
         private List<FormDataFactory> formFactories;
         private HttpUrl baseUrl;
         private OkHttpClient client;
+        private NeoPlatform platform;
         
         public Builder() {
             queryFactories = new ArrayList<>();
@@ -36,6 +39,11 @@ public class Neofit {
             partsFactories = new ArrayList<>();
             headerFactories = new ArrayList<>();
             formFactories = new ArrayList<>();
+        }
+        
+        public Builder platform(NeoPlatform platform) {
+            this.platform = platform;
+            return this;
         }
         
         public Builder client(OkHttpClient client) {
@@ -87,6 +95,26 @@ public class Neofit {
                 client = new OkHttpClient();
             }
             neofit.client = client;
+            
+            if(platform == null) {
+                platform = new NeoPlatform() {
+                    private Executor requestExecutor = Executors.newFixedThreadPool(4);
+                    private Executor callbackExecutor = (command) -> { command.run(); };
+                                        
+                    @Override
+                    public Executor requestExecutor() {
+                        return requestExecutor;
+                    }
+
+                    @Override
+                    public Executor callbackExecutor() {
+                        return callbackExecutor;
+                    }
+                    
+                };
+            }
+            neofit.platform = platform;
+            
             neofit.baseUrl = baseUrl;
             
             return neofit;
@@ -96,6 +124,7 @@ public class Neofit {
     private ConverterManager converter;
     private OkHttpClient client;
     private HttpUrl baseUrl;
+    private NeoPlatform platform;
     
     @SuppressWarnings("unchecked")
     public <T> T create(Class<T> type) throws NeofitException {
@@ -103,6 +132,7 @@ public class Neofit {
             throw new IllegalArgumentException("Service should be interface");
         }
         
-        return (T)Proxy.newProxyInstance(type.getClassLoader(), new Class<?>[]{ type }, new ServiceProxy(type, baseUrl, client, converter));
+        ServiceProxy proxy = new ServiceProxy(type, baseUrl, platform, client, converter);
+        return (T)Proxy.newProxyInstance(type.getClassLoader(), new Class<?>[]{ type }, proxy);
     }
 }

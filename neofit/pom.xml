@@ -33,4 +33,7 @@
     		<version>3.12.0</version>
     	</dependency>
     </dependencies>
+    <name>Neofit</name>
+    <description>Neofit - library for simplifing work with RESTful services</description>
+    <url>https://github.com/KirillBogatikov/Neofit/</url>
 </project>

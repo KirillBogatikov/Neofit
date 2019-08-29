@@ -10,6 +10,7 @@ import java.util.StringJoiner;
 
 import org.kllbff.neofit.ConverterManager;
 import org.kllbff.neofit.NeoCall;
+import org.kllbff.neofit.NeoPlatform;
 import org.kllbff.neofit.annotations.Service;
 import org.kllbff.neofit.exceptions.NeofitException;
 
@@ -23,12 +24,14 @@ import okhttp3.RequestBody;
 
 public class ServiceProxy implements InvocationHandler {
     private HttpUrl baseUrl;
+    private NeoPlatform platform;
     private Map<Method, ServiceMethod> methods;
     private OkHttpClient httpClient;
     private ConverterManager converter;
     
-    public ServiceProxy(Class<?> type, HttpUrl baseUrl, OkHttpClient httpClient, ConverterManager converter) throws NeofitException {
+    public ServiceProxy(Class<?> type, HttpUrl baseUrl, NeoPlatform platform, OkHttpClient httpClient, ConverterManager converter) throws NeofitException {
         this.baseUrl = baseUrl;
+        this.platform = platform;
         this.httpClient = httpClient;
         this.converter = converter;
         
@@ -64,7 +67,6 @@ public class ServiceProxy implements InvocationHandler {
         
         addHeaders(requestBuilder, serviceMethod.headers(), args);
         requestBuilder.url(compileUrl(serviceMethod.urlPattern(), serviceMethod.pathVariables(), serviceMethod.queries(), args));
-        //System.out.println(compileUrl(serviceMethod.urlPattern(), serviceMethod.pathVariables(), serviceMethod.queries(), args));
         
         RequestBody body = null;
         String httpMethod = serviceMethod.httpMethod();
@@ -90,7 +92,7 @@ public class ServiceProxy implements InvocationHandler {
         requestBuilder.method(httpMethod, body);
         Request request = requestBuilder.build();
         
-        return new NeoCall(httpClient.newCall(request), converter);
+        return new NeoCall(httpClient.newCall(request), platform, converter);
     }
     
     private void addHeaders(Request.Builder requestBuilder, List<RequestHeader> headers, Object[] args) throws NeofitException {
