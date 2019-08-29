@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.concurrent.Executor;
 
 import okhttp3.Call;
+import okhttp3.Request;
 import okio.Timeout;
 
 public class NeoCall {
@@ -20,6 +21,10 @@ public class NeoCall {
     
     public NeoResponse sync() throws IOException {
         return new NeoResponse(call.execute(), converter);
+    }
+    
+    public Request getHttpRequest() {
+        return call.request();
     }
     
     public void async(NeoCallback callback) {

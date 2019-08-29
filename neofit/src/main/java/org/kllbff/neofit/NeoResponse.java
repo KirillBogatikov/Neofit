@@ -34,7 +34,7 @@ public class NeoResponse {
     
     @SuppressWarnings("unchecked")
     public <T> T to(Type type) throws NeofitException {
-        return (T)converter.parseResponseBody(type, contentType.toString(), bodyBytes);
+        return (T)converter.parseResponseBody(type, contentType == null ? null : contentType.toString(), bodyBytes);
     }
     
     public int code() {

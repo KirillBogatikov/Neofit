@@ -114,7 +114,7 @@ public class ConverterManager {
                 return result;
             }
         }
-        
+
         if(hasConverter) {
             throw new NeofitException("No converter could convert the value \"" + source + "\" of type " + parameterType);
         }

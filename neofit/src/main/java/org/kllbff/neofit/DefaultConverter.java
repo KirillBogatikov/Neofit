@@ -115,6 +115,28 @@ public class DefaultConverter {
                         return Part.create(RequestBody.create(MediaType.parse(contentType), object.toString().getBytes()));
                     };
                 }
+                
+                if(TypeUtils.isSubclass(type, File.class)) {
+                    return (object) -> {
+                        File file = (File)object;
+                        try {
+                            byte[] bytes = FileUtils.readAllBytes(file);
+                            
+                            MediaType mediaType;
+                            if(contentType.isEmpty()) {
+                                TypeDetector typeDetector = new TypeDetector();
+                                String mimeType = typeDetector.mimeType(bytes);
+                                mediaType = MediaType.get(mimeType == null ? "application/octet-stream" : mimeType);
+                            } else {
+                                mediaType = MediaType.parse(contentType);
+                            }
+                            
+                            return Part.createFormData(partName, "", RequestBody.create(mediaType, bytes));
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    };
+                }
             }
             
             return null;

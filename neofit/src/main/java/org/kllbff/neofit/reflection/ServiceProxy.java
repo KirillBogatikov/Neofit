@@ -16,6 +16,7 @@ import org.kllbff.neofit.exceptions.NeofitException;
 
 import okhttp3.FormBody;
 import okhttp3.HttpUrl;
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.MultipartBody.Part;
 import okhttp3.OkHttpClient;
@@ -84,12 +85,24 @@ public class ServiceProxy implements InvocationHandler {
                 Part part = converter.parseMultipartItem(item.getParameterType(), item.getContentType(), item.getName(), args[item.getIndex()]);
                 multipartBuilder.addPart(part);
             }
+            body = multipartBuilder.build();
         } else if(serviceMethod.hasPlainBody()) {
             PlainBody plainBody = serviceMethod.plainBody();
             body = converter.parseRequestBody(plainBody.getClass(), plainBody.getContentType(), args[plainBody.getIndex()]);
         }
                 
-        requestBuilder.method(httpMethod, body);
+        if(body == null) {
+            body = RequestBody.create(MediaType.parse("text/plain"), "".getBytes());
+        }
+             
+        if(httpMethod.equalsIgnoreCase("GET")) {
+            requestBuilder.get();
+        } else if(httpMethod.equalsIgnoreCase("HEAD")) {
+            requestBuilder.head();
+        } else {
+            requestBuilder.method(httpMethod, body);
+        }
+        
         Request request = requestBuilder.build();
         
         return new NeoCall(httpClient.newCall(request), platform, converter);
@@ -115,7 +128,12 @@ public class ServiceProxy implements InvocationHandler {
         StringJoiner queriesJoiner = new StringJoiner("&");
         
         for(UrlQuery query : queries) {
-            String queryValue = converter.parseQuery(query.getParameterType(), query.getName(), args[query.getIndex()]);
+            Object arg = args[query.getIndex()];
+            if(arg == null) {
+                continue;
+            }
+            
+            String queryValue = converter.parseQuery(query.getParameterType(), query.getName(), arg);
             queriesJoiner.add(query.getName() + "=" + queryValue);    
         }
         
