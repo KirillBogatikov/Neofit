@@ -18,4 +18,6 @@
         	<version>1.0.0</version>
         </dependency>
     </dependencies>
+    <name>Neofit GSON Factories</name>
+    <description>A kit of factories for parsing json data by Google's GSON library</description>
 </project>

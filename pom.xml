@@ -3,8 +3,7 @@
     <groupId>org.kllbff.cuba.neofit</groupId>
     <artifactId>neofit-parent</artifactId>
     <version>1.0.0</version>
-    <name>Neofit</name>
-    <description>Simple useful wrapper for Squareup Retrofit</description>
+    <name>Neofit Parent</name>
     <repositories>
         <repository>
             <id>kllbff-public-releases</id>
@@ -99,5 +98,7 @@
         <module>neofit</module>
         <module>neofit-annotations</module>
         <module>neofit-gson</module>
+        <module>neofit-android</module>
     </modules>
+    <description>Root project of all Neofit modules</description>
 </project>
