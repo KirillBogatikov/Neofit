@@ -17,7 +17,8 @@ public class GsonQueryFactory implements QueryFactory {
     @Override
     public NeoConverter<Object, String> converter(Type parameterType, String queryName) {
         return (object) -> {
-            return gson.toJson(object, parameterType);
+            String json = gson.toJson(object, parameterType);
+            return json.startsWith("\"") ? json.substring(1, json.length() - 1) : json;
         };
     }
 

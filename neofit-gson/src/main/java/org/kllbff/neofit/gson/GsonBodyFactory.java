@@ -1,5 +1,6 @@
 package org.kllbff.neofit.gson;
 
+import java.io.File;
 import java.lang.reflect.Type;
 
 import org.kllbff.neofit.NeoConverter;
@@ -19,7 +20,7 @@ public class GsonBodyFactory implements BodyFactory {
 
     @Override
     public NeoConverter<Object, RequestBody> requestConverter(Type parameterType, String contentType) {
-        if(!contentType.isEmpty() || !contentType.contains("json")) {
+        if(!contentType.isEmpty() && !contentType.contains("json") || parameterType.equals(File.class)) {
             return null;
         }
         
@@ -38,7 +39,7 @@ public class GsonBodyFactory implements BodyFactory {
 
     @Override
     public NeoConverter<byte[], Object> responseConverter(Type parameterType, String contentType) {
-        if(!contentType.isEmpty() || !contentType.contains("json")) {
+        if(!contentType.isEmpty() && !contentType.contains("json")) {
             return null;
         }
         
