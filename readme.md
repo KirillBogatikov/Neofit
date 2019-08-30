@@ -39,20 +39,26 @@ Neofit does not available in Maven Central or any other certified Maven reposito
 
 You can add dependency for any module:  
 - Main module  
-    > &lt;dependency&gt;  
-    >     &lt;groupId&gt;org.kllbff.cuba.neofit&lt;/groupId&gt;  
-    >     &lt;artifactId&gt;neofit&lt;/artifactId&gt;  
-    >     &lt;version&gt;1.0.0&lt;/version&gt;  
-    > &lt;/dependency&gt;
+```xml  
+    <dependency>  
+        <groupId>org.kllbff.cuba.neofit</groupId>  
+        <artifactId>neofit</artifactId>  
+        <version>1.0.0</version> 
+    </dependency>
+```
  - Gson  
-    > &lt;dependency&gt;  
-    >     &lt;groupId&gt;org.kllbff.cuba.neofit&lt;/groupId&gt;  
-    >     &lt;artifactId&gt;neofit-gson&lt;/artifactId&gt;  
-    >     &lt;version&gt;1.0.0&lt;/version&gt;  
-    > &lt;/dependency&gt;
+```xml  
+    <dependency>  
+        <groupId>org.kllbff.cuba.neofit</groupId>  
+        <artifactId>neofit-gson</artifactId>  
+        <version>1.0.0</version> 
+    </dependency>
+```
 - Android  
-    > &lt;dependency&gt;  
-    >     &lt;groupId&gt;org.kllbff.cuba.neofit&lt;/groupId&gt;  
-    >     &lt;artifactId&gt;neofit-android&lt;/artifactId&gt;  
-    >     &lt;version&gt;1.0.0&lt;/version&gt;  
-    > &lt;/dependency&gt;
+```xml  
+    <dependency>  
+        <groupId>org.kllbff.cuba.neofit</groupId>  
+        <artifactId>neofit-android</artifactId>  
+        <version>1.0.0</version> 
+    </dependency>
+```
