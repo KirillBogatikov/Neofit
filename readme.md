@@ -25,8 +25,8 @@ All this is already available here and now... By NEOFIT!
 You can add dependency for any module:  
 - Main module  
     > &lt;dependency&gt;  
-          &lt;groupId&gt;org.kllbff.cuba.neofit&lt;/groupId&gt;  
-          &lt;artifactId&gt;neofit&lt;/artifactId&gt;  
-          &lt;version&gt;1.0.0&lt;/version&gt;  
-      &lt;/dependency&gt;
+    >     &lt;groupId&gt;org.kllbff.cuba.neofit&lt;/groupId&gt;  
+    >     &lt;artifactId&gt;neofit&lt;/artifactId&gt;  
+    >     &lt;version&gt;1.0.0&lt;/version&gt;  
+    > &lt;/dependency&gt;
     
