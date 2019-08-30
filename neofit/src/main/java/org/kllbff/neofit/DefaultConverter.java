@@ -1,8 +1,10 @@
 package org.kllbff.neofit;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.lang.reflect.Type;
@@ -62,18 +64,6 @@ public class DefaultConverter {
                     };
                 }
                 
-                if(TypeUtils.isSubclass(type, Serializable.class)) {
-                    return (object) -> {
-                        try(ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
-                            ObjectOutputStream objectStream = new ObjectOutputStream(byteStream)) {
-                            objectStream.writeObject(object);
-                            return RequestBody.create(MediaType.get("application/octet-stream"), byteStream.toByteArray());
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }  
-                    };
-                }
-                
                 if(type.equals(byte[].class) || type.equals(Byte[].class)) {
                     return (object) -> {
                         if(type.equals(Byte[].class)) {
@@ -122,7 +112,19 @@ public class DefaultConverter {
                             throw new RuntimeException(e);
                         }
                     };
-                }                
+                }
+
+                if(TypeUtils.isSubclass(type, Serializable.class)) {
+                    return (object) -> {
+                        try(ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+                            ObjectOutputStream objectStream = new ObjectOutputStream(byteStream)) {
+                            objectStream.writeObject(object);
+                            return RequestBody.create(MediaType.get("application/octet-stream"), byteStream.toByteArray());
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }  
+                    };
+                }
             }
 
             return null;
@@ -146,6 +148,7 @@ public class DefaultConverter {
         public NeoConverter<byte[], Object> responseConverter(Type parameterType, String contentType) {
             if(parameterType instanceof Class) {
                 Class<?> type = (Class<?>)parameterType;
+                                
                 if(type.isPrimitive()) {
                     type = ValueUtils.boxTypeFor(type);
                 }
@@ -182,6 +185,17 @@ public class DefaultConverter {
                 }
                 if(TypeUtils.isSubclass(type, String.class)) {
                     return bytes -> new String(bytes);
+                }
+                
+                if(TypeUtils.isSubclass(type, Serializable.class)) {
+                    return (bytes) -> {
+                        try(ByteArrayInputStream arrayStream = new ByteArrayInputStream(bytes);
+                            ObjectInputStream objectStream = new ObjectInputStream(arrayStream)) {
+                            return objectStream.readObject();
+                        } catch(IOException | ClassNotFoundException e) {
+                            throw new RuntimeException(e);
+                        }
+                    };
                 }
             }
             
