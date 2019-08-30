@@ -22,6 +22,21 @@ All this is already available here and now... By NEOFIT!
 ---
 
 ### Using Neofit  
+##### Important!
+Neofit does not available in Maven Central or any other certified Maven repository. It can be downloaded from my Public Maven repository. You can add it code into your pom.xml:
+```xml
+    <repositories>
+        <repository>
+            <id>kllbff-public-releases</id>
+            <url>https://github.com/KirillBogatikov/MavenArtifacts/raw/master/releases</url>
+        </repository>
+        <repository>
+            <id>kllbff-public-snapshots</id>
+            <url>https://github.com/KirillBogatikov/MavenArtifacts/raw/master/snapshots</url>
+        </repository>
+    </repositories>
+```
+
 You can add dependency for any module:  
 - Main module  
     > &lt;dependency&gt;  
@@ -29,4 +44,15 @@ You can add dependency for any module:
     >     &lt;artifactId&gt;neofit&lt;/artifactId&gt;  
     >     &lt;version&gt;1.0.0&lt;/version&gt;  
     > &lt;/dependency&gt;
-    
+ - Gson  
+    > &lt;dependency&gt;  
+    >     &lt;groupId&gt;org.kllbff.cuba.neofit&lt;/groupId&gt;  
+    >     &lt;artifactId&gt;neofit-gson&lt;/artifactId&gt;  
+    >     &lt;version&gt;1.0.0&lt;/version&gt;  
+    > &lt;/dependency&gt;
+- Android  
+    > &lt;dependency&gt;  
+    >     &lt;groupId&gt;org.kllbff.cuba.neofit&lt;/groupId&gt;  
+    >     &lt;artifactId&gt;neofit-android&lt;/artifactId&gt;  
+    >     &lt;version&gt;1.0.0&lt;/version&gt;  
+    > &lt;/dependency&gt;
