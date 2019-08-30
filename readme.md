@@ -1,3 +1,4 @@
+![Neofit icon](https://raw.githubusercontent.com/KirillBogatikov/Neofit/dev/javadoc/images/icon.png)
 # NEOFIT
 #### Part of CUBA project
 ---
