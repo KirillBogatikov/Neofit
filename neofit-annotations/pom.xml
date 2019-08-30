@@ -6,4 +6,6 @@
         <version>1.0.0</version>
     </parent>
     <artifactId>neofit-annotations</artifactId>
+    <description>Annotations for client RESTful service interfaces</description>
+    <name>Neofit Annotations</name>
 </project>

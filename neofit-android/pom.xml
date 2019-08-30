@@ -6,7 +6,6 @@
     <version>1.0.0</version>
   </parent>
   <artifactId>neofit-android</artifactId>
-  <name>Implementation of NeoPlatform for Android OS</name>
   <dependencies>
   	<dependency>
   		<groupId>org.kllbff.cuba.neofit</groupId>
@@ -14,4 +13,6 @@
   		<version>1.0.0</version>
   	</dependency>
   </dependencies>
+  <description>Implementation of NeoPlatform for Android OS</description>
+  <name>Neofit Android Platform</name>
 </project>
