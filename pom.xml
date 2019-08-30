@@ -1,29 +1,31 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.kllbff.cuba</groupId>
-    <artifactId>neofit</artifactId>
+    <groupId>org.kllbff.cuba.neofit</groupId>
+    <artifactId>neofit-parent</artifactId>
     <version>1.0.0</version>
-    <name>Neofit</name>
-    <description>Simple useful wrapper for Squareup Retrofit</description>
+    <name>Neofit Parent</name>
     <repositories>
         <repository>
-            <id>kllbff</id>
+            <id>kllbff-public-releases</id>
             <url>https://github.com/KirillBogatikov/MavenArtifacts/raw/master/releases</url>
+        </repository>
+        <repository>
+            <id>kllbff-public-snapshots</id>
+            <url>https://github.com/KirillBogatikov/MavenArtifacts/raw/master/snapshots</url>
         </repository>
     </repositories>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <retrofit.version>2.6.1</retrofit.version>
     </properties>
     <distributionManagement>
         <repository>
-            <id>kllbff.releases</id>
+            <id>kllbff-private-releases</id>
             <name>Releases</name>
             <url>file:///D:/Work/Maven/releases</url>
         </repository>
         <snapshotRepository>
-            <id>kllbff.snapshots</id>
+            <id>kllbff-private-snapshots</id>
             <name>Snapshots</name>
             <url>file:///D:/Work/Maven/snapshots</url>
         </snapshotRepository>
@@ -55,6 +57,7 @@
             <plugin> 
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId> 
+                <version>3.1.1</version>
                 <executions> 
                     <execution> 
                         <id>attach-javadocs</id>
@@ -90,10 +93,13 @@
         </plugins>
     </build>
     <dependencies>
-        <dependency>
-            <groupId>com.squareup.retrofit2</groupId>
-            <artifactId>retrofit</artifactId>
-            <version>${retrofit.version}</version>
-        </dependency>
     </dependencies>
+    <packaging>pom</packaging>
+    <modules>
+        <module>neofit</module>
+        <module>neofit-annotations</module>
+        <module>neofit-gson</module>
+        <module>neofit-android</module>
+    </modules>
+    <description>Root project of all Neofit modules</description>
 </project>
