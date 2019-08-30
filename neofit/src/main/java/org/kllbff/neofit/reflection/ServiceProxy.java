@@ -88,7 +88,7 @@ public class ServiceProxy implements InvocationHandler {
             body = multipartBuilder.build();
         } else if(serviceMethod.hasPlainBody()) {
             PlainBody plainBody = serviceMethod.plainBody();
-            body = converter.parseRequestBody(plainBody.getClass(), plainBody.getContentType(), args[plainBody.getIndex()]);
+            body = converter.parseRequestBody(plainBody.getParameterType(), plainBody.getContentType(), args[plainBody.getIndex()]);
         }
                 
         if(body == null) {

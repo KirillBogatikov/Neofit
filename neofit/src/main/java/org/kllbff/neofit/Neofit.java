@@ -82,6 +82,10 @@ public class Neofit {
         }
         
         public Neofit build() {
+            if(baseUrl == null) {
+                throw new IllegalArgumentException("Base URL should be specified by baseUrl()");
+            }
+            
             Neofit neofit = new Neofit();      
             queryFactories.add(new DefaultQueryFactory());
             headerFactories.add(new DefaultHeaderFactory());
