@@ -240,19 +240,6 @@ public class DefaultConverter {
             if(parameterType instanceof Class<?>) {
                 Class<?> type = (Class<?>)parameterType;
                 
-                if(type.equals(byte[].class)) {
-                    return (object) -> {
-                        RequestBody body = RequestBody.create(MediaType.parse(contentType), (byte[])object);
-                        return Part.create(body);
-                    };
-                }
-                
-                if(TypeUtils.isSubclass(type, CharSequence.class)) {
-                    return (object) -> {
-                        return Part.create(RequestBody.create(MediaType.parse(contentType), object.toString().getBytes()));
-                    };
-                }
-                
                 if(TypeUtils.isSubclass(type, File.class)) {
                     return (object) -> {
                         File file = (File)object;
@@ -273,6 +260,12 @@ public class DefaultConverter {
                             throw new RuntimeException(e);
                         }
                     };
+                }
+                
+                DefaultBodyFactory factory = new DefaultBodyFactory();
+                NeoConverter<Object, RequestBody> converter = factory.requestConverter(parameterType, contentType);
+                if(converter != null) {
+                    return object -> Part.create(converter.convert(object));
                 }
             }
             
