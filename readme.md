@@ -1,0 +1,9 @@
+#NEOFIT
+####Part of CUBA project
+---
+Neofit is a library that allows you to quickly and easily develop the client part of the RESTful API service. For the preparation and execution of HTTP requests using an HTTP client OkHttp3. For ease of use the project is divided into several modules:
+ - Annotations  
+    > Annotations module contains only declarative annotations for marking your interfaces. Neofit supports come basic HTTP-methods available with prebuilt annotations: @Get, @Post, @Put, @Delete. Despite such a modest arsenal of built-in methods, the Neofit is famous for its extensibility. By using the @Request annotation, you can use a nonstandard method by specifying it as a method parameter.  
+    > The module also contains annotations to describe the requests themselves. @Service defines the base URL for all methods within the interface. This is an optional annotation, but it will make Your life much easier if you need to refactor requests addresses. You can also use variables in the requests URL address, such as </user/{id}>. The value of such a variable is determined by one of the method parameters marked with the @Path annotation. @Query annotation allows you to describe the query parameter passed in its URL after the character <?>.     
+    > @Header and @Headers annotations allows to define custom request headers. @Headers provides a sequence of constant headers, but by @Header can be annotated method parameter. It provides header with variable value.  
+    > @Body, @FormItem and @Part designed to describe the body of the request. You can use @Body to describe a normal query body. @FormItem is used to represent text data as key:value pairs within the query body. @Part is a component of multipart body and is used to transfer a variety of data in the form of body segments. Each part has its own name, content type and, directly, byte array content.
