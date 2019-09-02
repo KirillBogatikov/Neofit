@@ -1,13 +1,13 @@
-package org.kllbff.neofit.annotations;
+package org.cuba.neofit.annotations;
 
-import static java.lang.annotation.ElementType.TYPE;
+import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 @Retention(RUNTIME)
-@Target(TYPE)
-public @interface Service {
+@Target(PARAMETER)
+public @interface Query {
     String value();
 }

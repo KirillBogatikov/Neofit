@@ -1,13 +1,14 @@
-package org.kllbff.neofit.annotations;
+package org.cuba.neofit.annotations;
 
-import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 @Retention(RUNTIME)
-@Target(METHOD)
-public @interface Get {
+@Target(PARAMETER)
+public @interface Part {
+    String contentType() default "";
     String value();
 }

@@ -1,4 +1,4 @@
-package org.kllbff.neofit.annotations;
+package org.cuba.neofit.annotations;
 
 import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
@@ -8,6 +8,6 @@ import java.lang.annotation.Target;
 
 @Retention(RUNTIME)
 @Target(PARAMETER)
-public @interface Body {
-    String contentType() default "";
+public @interface FormItem {
+    String value();
 }
