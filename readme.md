@@ -42,24 +42,24 @@ You can add dependency for any module:
 - Main module  
 ```xml  
     <dependency>  
-        <groupId>org.kllbff.cuba.neofit</groupId>  
+        <groupId>org.cuba.neofit</groupId>  
         <artifactId>neofit</artifactId>  
-        <version>1.0.0</version> 
+        <version>1.0.1</version> 
     </dependency>
 ```
  - Gson  
 ```xml  
     <dependency>  
-        <groupId>org.kllbff.cuba.neofit</groupId>  
-        <artifactId>neofit-gson</artifactId>  
-        <version>1.0.0</version> 
+        <groupId>org.cuba.neofit</groupId>  
+        <artifactId>gson</artifactId>  
+        <version>1.0.1</version> 
     </dependency>
 ```
 - Android  
 ```xml  
     <dependency>  
-        <groupId>org.kllbff.cuba.neofit</groupId>  
-        <artifactId>neofit-android</artifactId>  
-        <version>1.0.0</version> 
+        <groupId>org.cuba.neofit</groupId>  
+        <artifactId>android</artifactId>  
+        <version>1.0.1</version> 
     </dependency>
 ```
