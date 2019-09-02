@@ -1,4 +1,4 @@
-package org.kllbff.neofit.bodies;
+package org.cuba.neofit.bodies;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,13 +10,13 @@ import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.cuba.crutchio.utils.FileUtils;
+import org.cuba.neofit.NeoCall;
+import org.cuba.neofit.Neofit;
+import org.cuba.neofit.exceptions.NeofitException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.kllbff.cuba.crutchio.utils.FileUtils;
-import org.kllbff.neofit.NeoCall;
-import org.kllbff.neofit.Neofit;
-import org.kllbff.neofit.exceptions.NeofitException;
 
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockResponse;

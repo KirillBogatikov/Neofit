@@ -1,4 +1,4 @@
-package org.kllbff.neofit.converters;
+package org.cuba.neofit.converters;
 
 import java.io.Serializable;
 

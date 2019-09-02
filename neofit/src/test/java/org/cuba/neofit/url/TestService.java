@@ -1,12 +1,12 @@
-package org.kllbff.neofit.url;
+package org.cuba.neofit.url;
 
-import org.kllbff.neofit.NeoCall;
-import org.kllbff.neofit.annotations.Get;
-import org.kllbff.neofit.annotations.Path;
-import org.kllbff.neofit.annotations.Post;
-import org.kllbff.neofit.annotations.Query;
-import org.kllbff.neofit.annotations.Request;
-import org.kllbff.neofit.annotations.Service;
+import org.cuba.neofit.NeoCall;
+import org.cuba.neofit.annotations.Get;
+import org.cuba.neofit.annotations.Path;
+import org.cuba.neofit.annotations.Post;
+import org.cuba.neofit.annotations.Query;
+import org.cuba.neofit.annotations.Request;
+import org.cuba.neofit.annotations.Service;
 
 @Service("dir/sub0")
 public interface TestService {

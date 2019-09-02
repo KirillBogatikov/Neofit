@@ -1,16 +1,16 @@
-package org.kllbff.neofit.url;
+package org.cuba.neofit.url;
 
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 import java.net.InetAddress;
 
+import org.cuba.neofit.NeoCall;
+import org.cuba.neofit.Neofit;
+import org.cuba.neofit.exceptions.NeofitException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.kllbff.neofit.NeoCall;
-import org.kllbff.neofit.Neofit;
-import org.kllbff.neofit.exceptions.NeofitException;
 
 import okhttp3.mockwebserver.Dispatcher;
 import okhttp3.mockwebserver.MockResponse;

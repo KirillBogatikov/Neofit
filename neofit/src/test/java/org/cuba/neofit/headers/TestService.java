@@ -1,9 +1,9 @@
-package org.kllbff.neofit.headers;
+package org.cuba.neofit.headers;
 
-import org.kllbff.neofit.NeoCall;
-import org.kllbff.neofit.annotations.Get;
-import org.kllbff.neofit.annotations.Header;
-import org.kllbff.neofit.annotations.Headers;
+import org.cuba.neofit.NeoCall;
+import org.cuba.neofit.annotations.Get;
+import org.cuba.neofit.annotations.Header;
+import org.cuba.neofit.annotations.Headers;
 
 public interface TestService {
     @Get("headers/one")

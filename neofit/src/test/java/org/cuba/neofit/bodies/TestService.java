@@ -1,12 +1,12 @@
-package org.kllbff.neofit.bodies;
+package org.cuba.neofit.bodies;
 
 import java.io.File;
 
-import org.kllbff.neofit.NeoCall;
-import org.kllbff.neofit.annotations.Body;
-import org.kllbff.neofit.annotations.FormItem;
-import org.kllbff.neofit.annotations.Part;
-import org.kllbff.neofit.annotations.Post;
+import org.cuba.neofit.NeoCall;
+import org.cuba.neofit.annotations.Body;
+import org.cuba.neofit.annotations.FormItem;
+import org.cuba.neofit.annotations.Part;
+import org.cuba.neofit.annotations.Post;
 
 public interface TestService {
     @Post("plain/octet")

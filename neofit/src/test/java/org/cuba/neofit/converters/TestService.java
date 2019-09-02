@@ -1,7 +1,7 @@
-package org.kllbff.neofit.converters;
+package org.cuba.neofit.converters;
 
-import org.kllbff.neofit.NeoCall;
-import org.kllbff.neofit.annotations.Get;
+import org.cuba.neofit.NeoCall;
+import org.cuba.neofit.annotations.Get;
 
 public interface TestService {
     @Get("string")
