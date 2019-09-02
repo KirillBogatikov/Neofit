@@ -1,4 +1,4 @@
-package org.kllbff.neofit.exceptions;
+package org.cuba.neofit.exceptions;
 
 import org.kllbff.cuba.exceptions.CubaException;
 

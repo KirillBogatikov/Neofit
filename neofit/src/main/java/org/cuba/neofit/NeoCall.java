@@ -1,4 +1,4 @@
-package org.kllbff.neofit;
+package org.cuba.neofit;
 
 import java.io.IOException;
 import java.util.concurrent.Executor;

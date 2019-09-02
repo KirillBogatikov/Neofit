@@ -1,9 +1,9 @@
-package org.kllbff.neofit;
+package org.cuba.neofit;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 
-import org.kllbff.neofit.exceptions.NeofitException;
+import org.cuba.neofit.exceptions.NeofitException;
 
 import okhttp3.MediaType;
 import okhttp3.Response;

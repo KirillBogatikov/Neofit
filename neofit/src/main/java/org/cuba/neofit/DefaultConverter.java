@@ -1,4 +1,4 @@
-package org.kllbff.neofit;
+package org.cuba.neofit;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -10,15 +10,14 @@ import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.Arrays;
 
-import org.kllbff.cuba.crutchio.TypeDetector;
-import org.kllbff.cuba.crutchio.utils.FileUtils;
-import org.kllbff.cuba.reflex.TypeUtils;
-import org.kllbff.cuba.reflex.ValueUtils;
-import org.kllbff.neofit.NeoConverter.BodyFactory;
-import org.kllbff.neofit.NeoConverter.FormDataFactory;
-import org.kllbff.neofit.NeoConverter.HeaderFactory;
-import org.kllbff.neofit.NeoConverter.PartsFactory;
-import org.kllbff.neofit.NeoConverter.QueryFactory;
+import org.cuba.crutchio.TypeDetector;
+import org.cuba.crutchio.utils.FileUtils;
+import org.cuba.neofit.NeoConverter.BodyFactory;
+import org.cuba.neofit.NeoConverter.FormDataFactory;
+import org.cuba.neofit.NeoConverter.HeaderFactory;
+import org.cuba.neofit.NeoConverter.PartsFactory;
+import org.cuba.neofit.NeoConverter.QueryFactory;
+import org.cuba.reflex.TypeUtils;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody.Part;
@@ -150,7 +149,7 @@ public class DefaultConverter {
                 Class<?> type = (Class<?>)parameterType;
                                 
                 if(type.isPrimitive()) {
-                    type = ValueUtils.boxTypeFor(type);
+                    type = TypeUtils.box(type);
                 }
 
                 if(type.equals(Byte.class)) {

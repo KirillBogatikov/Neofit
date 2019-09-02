@@ -1,4 +1,4 @@
-package org.kllbff.neofit;
+package org.cuba.neofit;
 
 public interface NeoCallback {
     public void onResponse(NeoCall call, NeoResponse response);

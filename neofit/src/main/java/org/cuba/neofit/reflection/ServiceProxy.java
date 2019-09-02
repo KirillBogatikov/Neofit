@@ -1,4 +1,4 @@
-package org.kllbff.neofit.reflection;
+package org.cuba.neofit.reflection;
 
 import java.io.File;
 import java.lang.reflect.InvocationHandler;
@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 
-import org.kllbff.neofit.ConverterManager;
-import org.kllbff.neofit.NeoCall;
-import org.kllbff.neofit.NeoPlatform;
-import org.kllbff.neofit.annotations.Service;
-import org.kllbff.neofit.exceptions.NeofitException;
+import org.cuba.neofit.ConverterManager;
+import org.cuba.neofit.NeoCall;
+import org.cuba.neofit.NeoPlatform;
+import org.cuba.neofit.annotations.Service;
+import org.cuba.neofit.exceptions.NeofitException;
 
 import okhttp3.FormBody;
 import okhttp3.HttpUrl;

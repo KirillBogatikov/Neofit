@@ -1,14 +1,14 @@
-package org.kllbff.neofit;
+package org.cuba.neofit;
 
 import java.lang.reflect.Type;
 import java.util.List;
 
-import org.kllbff.neofit.NeoConverter.BodyFactory;
-import org.kllbff.neofit.NeoConverter.FormDataFactory;
-import org.kllbff.neofit.NeoConverter.HeaderFactory;
-import org.kllbff.neofit.NeoConverter.PartsFactory;
-import org.kllbff.neofit.NeoConverter.QueryFactory;
-import org.kllbff.neofit.exceptions.NeofitException;
+import org.cuba.neofit.NeoConverter.BodyFactory;
+import org.cuba.neofit.NeoConverter.FormDataFactory;
+import org.cuba.neofit.NeoConverter.HeaderFactory;
+import org.cuba.neofit.NeoConverter.PartsFactory;
+import org.cuba.neofit.NeoConverter.QueryFactory;
+import org.cuba.neofit.exceptions.NeofitException;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;

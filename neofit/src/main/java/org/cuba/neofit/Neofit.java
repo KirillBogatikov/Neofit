@@ -1,4 +1,4 @@
-package org.kllbff.neofit;
+package org.cuba.neofit;
 
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
@@ -6,18 +6,18 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import org.kllbff.neofit.DefaultConverter.DefaultBodyFactory;
-import org.kllbff.neofit.DefaultConverter.DefaultFormDataFactory;
-import org.kllbff.neofit.DefaultConverter.DefaultHeaderFactory;
-import org.kllbff.neofit.DefaultConverter.DefaultPartsFactory;
-import org.kllbff.neofit.DefaultConverter.DefaultQueryFactory;
-import org.kllbff.neofit.NeoConverter.BodyFactory;
-import org.kllbff.neofit.NeoConverter.FormDataFactory;
-import org.kllbff.neofit.NeoConverter.HeaderFactory;
-import org.kllbff.neofit.NeoConverter.PartsFactory;
-import org.kllbff.neofit.NeoConverter.QueryFactory;
-import org.kllbff.neofit.exceptions.NeofitException;
-import org.kllbff.neofit.reflection.ServiceProxy;
+import org.cuba.neofit.DefaultConverter.DefaultBodyFactory;
+import org.cuba.neofit.DefaultConverter.DefaultFormDataFactory;
+import org.cuba.neofit.DefaultConverter.DefaultHeaderFactory;
+import org.cuba.neofit.DefaultConverter.DefaultPartsFactory;
+import org.cuba.neofit.DefaultConverter.DefaultQueryFactory;
+import org.cuba.neofit.NeoConverter.BodyFactory;
+import org.cuba.neofit.NeoConverter.FormDataFactory;
+import org.cuba.neofit.NeoConverter.HeaderFactory;
+import org.cuba.neofit.NeoConverter.PartsFactory;
+import org.cuba.neofit.NeoConverter.QueryFactory;
+import org.cuba.neofit.exceptions.NeofitException;
+import org.cuba.neofit.reflection.ServiceProxy;
 
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;

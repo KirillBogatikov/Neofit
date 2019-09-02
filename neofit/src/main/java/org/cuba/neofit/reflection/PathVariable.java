@@ -1,4 +1,4 @@
-package org.kllbff.neofit.reflection;
+package org.cuba.neofit.reflection;
 
 public class PathVariable {
     private String var;

@@ -1,4 +1,4 @@
-package org.kllbff.neofit;
+package org.cuba.neofit;
 
 import java.lang.reflect.Type;
 

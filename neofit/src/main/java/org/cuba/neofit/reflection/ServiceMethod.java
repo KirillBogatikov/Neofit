@@ -1,24 +1,24 @@
-package org.kllbff.neofit.reflection;
+package org.cuba.neofit.reflection;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.kllbff.neofit.annotations.Body;
-import org.kllbff.neofit.annotations.Delete;
-import org.kllbff.neofit.annotations.FormItem;
-import org.kllbff.neofit.annotations.Get;
-import org.kllbff.neofit.annotations.Head;
-import org.kllbff.neofit.annotations.Header;
-import org.kllbff.neofit.annotations.Headers;
-import org.kllbff.neofit.annotations.Part;
-import org.kllbff.neofit.annotations.Path;
-import org.kllbff.neofit.annotations.Post;
-import org.kllbff.neofit.annotations.Put;
-import org.kllbff.neofit.annotations.Query;
-import org.kllbff.neofit.annotations.Request;
-import org.kllbff.neofit.exceptions.NeofitException;
+import org.cuba.neofit.annotations.Body;
+import org.cuba.neofit.annotations.Delete;
+import org.cuba.neofit.annotations.FormItem;
+import org.cuba.neofit.annotations.Get;
+import org.cuba.neofit.annotations.Head;
+import org.cuba.neofit.annotations.Header;
+import org.cuba.neofit.annotations.Headers;
+import org.cuba.neofit.annotations.Part;
+import org.cuba.neofit.annotations.Path;
+import org.cuba.neofit.annotations.Post;
+import org.cuba.neofit.annotations.Put;
+import org.cuba.neofit.annotations.Query;
+import org.cuba.neofit.annotations.Request;
+import org.cuba.neofit.exceptions.NeofitException;
 
 public class ServiceMethod {
     private Method method;
