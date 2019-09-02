@@ -1,4 +1,4 @@
-package org.kllbff.neofit.gson;
+package org.cuba.neofit.gson;
 
 import java.io.File;
 import java.lang.reflect.Type;
