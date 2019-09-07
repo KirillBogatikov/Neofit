@@ -10,22 +10,22 @@
         <dependency>
             <groupId>org.cuba</groupId>
             <artifactId>crutchio</artifactId>
-            <version>1.0.1</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.cuba</groupId>
             <artifactId>reflex</artifactId>
-            <version>1.0.1</version>
+            <version>${project.version}</version>
         </dependency>
     	<dependency>
     		<groupId>org.cuba</groupId>
     		<artifactId>exceptions</artifactId>
-    		<version>1.0.1</version>
+    		<version>${project.version}</version>
     	</dependency>
     	<dependency>
     		<groupId>org.cuba.neofit</groupId>
     		<artifactId>annotations</artifactId>
-    		<version>1.0.1</version>
+    		<version>${project.version}</version>
     	</dependency>
     	<dependency>
     		<groupId>com.squareup.okhttp3</groupId>

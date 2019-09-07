@@ -8,9 +8,9 @@
   <artifactId>android</artifactId>
   <dependencies>
   	<dependency>
-  		<groupId>org.kllbff.cuba.neofit</groupId>
+  		<groupId>org.cuba.neofit</groupId>
   		<artifactId>neofit</artifactId>
-  		<version>1.0.0</version>
+  		<version>${project.version}</version>
   	</dependency>
   </dependencies>
   <description>Implementation of NeoPlatform for Android OS</description>
