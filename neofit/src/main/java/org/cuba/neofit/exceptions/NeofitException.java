@@ -1,6 +1,6 @@
 package org.cuba.neofit.exceptions;
 
-import org.kllbff.cuba.exceptions.CubaException;
+import org.cuba.exceptions.CubaException;
 
 public class NeofitException extends CubaException {
     private static final long serialVersionUID = -3778929741870825258L;
