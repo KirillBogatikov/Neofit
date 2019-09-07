@@ -3,8 +3,8 @@ package org.cuba.neofit.gson;
 import java.io.File;
 import java.lang.reflect.Type;
 
-import org.kllbff.neofit.NeoConverter;
-import org.kllbff.neofit.NeoConverter.PartsFactory;
+import org.cuba.neofit.NeoConverter;
+import org.cuba.neofit.NeoConverter.PartsFactory;
 
 import com.google.gson.Gson;
 

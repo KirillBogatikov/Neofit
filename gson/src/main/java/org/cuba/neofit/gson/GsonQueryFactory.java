@@ -2,8 +2,8 @@ package org.cuba.neofit.gson;
 
 import java.lang.reflect.Type;
 
-import org.kllbff.neofit.NeoConverter;
-import org.kllbff.neofit.NeoConverter.QueryFactory;
+import org.cuba.neofit.NeoConverter;
+import org.cuba.neofit.NeoConverter.QueryFactory;
 
 import com.google.gson.Gson;
 
