@@ -6,6 +6,8 @@ import java.lang.reflect.Method;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import org.cuba.neofit.NeoPlatform;
+
 public class Android extends NeoPlatform {
     private Executor requestExecutor, callbackExecutor;
     
