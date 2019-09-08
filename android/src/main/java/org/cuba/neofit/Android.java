@@ -35,7 +35,7 @@ public class Android extends NeoPlatform {
         }
         
         try {
-            Class<?> version = Class.forName("android.os.Build.VERSION");
+            Class<?> version = Class.forName("android.os.Build$VERSION");
             Field sdkIntField = version.getDeclaredField("SDK_INT");
             apiVersionCode = (int)(sdkIntField.get(null));
         } catch (Throwable e) {
