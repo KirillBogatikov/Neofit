@@ -6,21 +6,24 @@
         <version>1.0.2</version>
     </parent>
     <artifactId>neofit</artifactId>
+    <properties>
+        <cuba.version>1.0.1</cuba.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.cuba</groupId>
             <artifactId>crutchio</artifactId>
-            <version>${project.version}</version>
+            <version>${cuba.version}</version>
         </dependency>
         <dependency>
             <groupId>org.cuba</groupId>
             <artifactId>reflex</artifactId>
-            <version>${project.version}</version>
+            <version>${cuba.version}</version>
         </dependency>
     	<dependency>
     		<groupId>org.cuba</groupId>
     		<artifactId>exceptions</artifactId>
-    		<version>${project.version}</version>
+    		<version>${cuba.version}</version>
     	</dependency>
     	<dependency>
     		<groupId>org.cuba.neofit</groupId>
