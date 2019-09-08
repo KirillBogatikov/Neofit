@@ -49,7 +49,7 @@ public class ServiceProxy implements InvocationHandler {
         
         Method[] methods = type.getDeclaredMethods();
         for(Method method : methods) {
-            if(method.isDefault()) {
+            if(platform.isDefault(method)) {
                 continue;
             }
             
