@@ -1,7 +1,8 @@
 package org.cuba.neofit.reflection;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,73 +115,75 @@ public class ServiceMethod {
         formItems = new ArrayList<>();
         parts = new ArrayList<>();
         
-        Class<?>[] parameters = method.getParameterTypes();
-        for(int i = 0; i < parameters.length; i++) {
-            Class<?> param = parameters[i];
-            
-            Header header = param.getAnnotation(Header.class);
-            if(header != null) {
-                headers.add(new RequestHeader(header.value(), param, i));
-                continue;
-            }
-            
-            Body body = param.getAnnotation(Body.class);
-            if(body != null) {
-                if(this.body != null) {
-                    throw new NeofitException("Request can has only one body!");
+        Type[] paramTypes = method.getGenericParameterTypes();
+        Annotation[][] paramAnnotations = method.getParameterAnnotations();
+        for(int i = 0; i < paramTypes.length; i++) {
+            for(Annotation annotation : paramAnnotations[i]) {
+                
+                if(annotation instanceof Header) {
+                    Header header = (Header)annotation;
+                    headers.add(new RequestHeader(header.value(), paramTypes[i], i));
+                    continue;
                 }
-                if(hasMultipartBody() || hasFormDataBody()) {
-                    throw new NeofitException("Request can not has Multipart body or FormData items and plain body together!");
-                }
-                if(httpMethod.equalsIgnoreCase("GET") || httpMethod.equalsIgnoreCase("HEAD")) {
-                    throw new NeofitException("GET and HEAD requests can not has any body");
+            
+                if(annotation instanceof Body) {
+                    Body body = (Body)annotation;
+                    if(this.body != null) {
+                        throw new NeofitException("Request can has only one body!");
+                    }
+                    if(hasMultipartBody() || hasFormDataBody()) {
+                        throw new NeofitException("Request can not has Multipart body or FormData items and plain body together!");
+                    }
+                    if(httpMethod.equalsIgnoreCase("GET") || httpMethod.equalsIgnoreCase("HEAD")) {
+                        throw new NeofitException("GET and HEAD requests can not has any body");
+                    }
+                    
+                    this.body = new PlainBody(body.contentType(), paramTypes[i], i);
+                    continue;
                 }
                 
-                this.body = new PlainBody(body.contentType(), param, i);
-                continue;
-            }
-            
-            Part part = param.getAnnotation(Part.class);
-            if(part != null) {
-                if(this.body != null) {
-                    throw new NeofitException("Request can not has Multipart body and plain body together!");
-                }
-                if(!formItems.isEmpty()) {
-                    throw new NeofitException("Request can not has Multipart body and FormData body together!");
-                }
-                if(httpMethod.equalsIgnoreCase("GET") || httpMethod.equalsIgnoreCase("HEAD")) {
-                    throw new NeofitException("GET and HEAD requests can not has any body");
-                }
-                
-                this.parts.add(new MultipartItem(part.value(), part.contentType(), param, i));
-                continue;
-            }
-            
-            FormItem formItem = param.getAnnotation(FormItem.class);
-            if(formItem != null) {
-                if(this.body != null) {
-                    throw new NeofitException("Request can not has FormData body and plain body together!");
-                }
-                if(!parts.isEmpty()) {
-                    throw new NeofitException("Request can not has FormData body and Multipart body together!");
-                }
-                if(httpMethod.equalsIgnoreCase("GET") || httpMethod.equalsIgnoreCase("HEAD")) {
-                    throw new NeofitException("GET and HEAD requests can not has any body");
+                if(annotation instanceof Part) {
+                    Part part = (Part)annotation;
+                    if(this.body != null) {
+                        throw new NeofitException("Request can not has Multipart body and plain body together!");
+                    }
+                    if(!formItems.isEmpty()) {
+                        throw new NeofitException("Request can not has Multipart body and FormData body together!");
+                    }
+                    if(httpMethod.equalsIgnoreCase("GET") || httpMethod.equalsIgnoreCase("HEAD")) {
+                        throw new NeofitException("GET and HEAD requests can not has any body");
+                    }
+                    
+                    this.parts.add(new MultipartItem(part.value(), part.contentType(), paramTypes[i], i));
+                    continue;
                 }
                 
-                this.formItems.add(new FormDataItem(formItem.value(), param, i));
-                continue;
-            }
-            
-            Query query = param.getAnnotation(Query.class);
-            if(query != null) {
-                this.queries.add(new UrlQuery(query.value(), param, i));
-                continue;
-            }
-            
-            Path path = param.getAnnotation(Path.class);
-            if(path != null) {
-                this.pathVariables.add(new PathVariable(path.value(), i));
+                if(annotation instanceof FormItem) {
+                    FormItem formItem = (FormItem)annotation;
+                    if(this.body != null) {
+                        throw new NeofitException("Request can not has FormData body and plain body together!");
+                    }
+                    if(!parts.isEmpty()) {
+                        throw new NeofitException("Request can not has FormData body and Multipart body together!");
+                    }
+                    if(httpMethod.equalsIgnoreCase("GET") || httpMethod.equalsIgnoreCase("HEAD")) {
+                        throw new NeofitException("GET and HEAD requests can not has any body");
+                    }
+                    
+                    this.formItems.add(new FormDataItem(formItem.value(), paramTypes[i], i));
+                    continue;
+                }
+                
+                if(annotation instanceof Query) {
+                    Query query = (Query)annotation;
+                    this.queries.add(new UrlQuery(query.value(), paramTypes[i], i));
+                    continue;
+                }
+                
+                if(annotation instanceof Path) {
+                    Path path = (Path)annotation;
+                    this.pathVariables.add(new PathVariable(path.value(), i));
+                }
             }
         }
     }

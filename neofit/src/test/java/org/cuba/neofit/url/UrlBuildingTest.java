@@ -32,6 +32,9 @@ public class UrlBuildingTest {
                 
                 MockResponse response = new MockResponse().setHeader("Content-Type", "application/json");
                 
+                System.out.println(method);
+                System.out.println(url);
+                
                 if(method.equalsIgnoreCase("GET")) {
                     if(url.equals("dir/sub0/sub1/sub2")) {
                         return response.setBody("success");

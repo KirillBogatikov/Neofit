@@ -4,9 +4,9 @@ import java.io.File;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.StringJoiner;
 
 import org.cuba.neofit.ConverterManager;
 import org.cuba.neofit.NeoCall;
@@ -59,7 +59,7 @@ public class ServiceProxy implements InvocationHandler {
 
     @Override
     public Object invoke(Object instance, Method method, Object[] args) throws Throwable {
-        if(method.isDefault()) {
+        if(platform.isDefault(method)) {
             return method.invoke(instance, args);
         }
         
@@ -125,16 +125,22 @@ public class ServiceProxy implements InvocationHandler {
             url = url.replace(String.format("{%s}", path.getVar()), args[path.getIndex()].toString());
         }
         
-        StringJoiner queriesJoiner = new StringJoiner("&");
+        StringBuilder queriesJoiner = new StringBuilder();
         
-        for(UrlQuery query : queries) {
+        Iterator<UrlQuery> iterator = queries.iterator();
+        while(iterator.hasNext()) {
+            UrlQuery query = iterator.next();
             Object arg = args[query.getIndex()];
             if(arg == null) {
                 continue;
             }
             
             String queryValue = converter.parseQuery(query.getParameterType(), query.getName(), arg);
-            queriesJoiner.add(query.getName() + "=" + queryValue);    
+            queriesJoiner.append(query.getName() + "=" + queryValue);
+            
+            if(iterator.hasNext()) {
+                queriesJoiner.append("&");
+            }
         }
         
         if(queriesJoiner.length() != 0) {

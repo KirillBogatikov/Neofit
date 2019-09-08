@@ -49,7 +49,6 @@ public class MultipartTest {
             public MockResponse dispatch(RecordedRequest request) throws InterruptedException {
                 String url = request.getRequestUrl().toString().replace("http://127.0.0.1/parts/", "");
                 
-                String boundary = request.getHeader("Content-Type").split("; boundary=")[1];
                 MockResponse response = new MockResponse().setHeader("Content-Type", "application/json");
              
                 if(url.equals("octet")) {
@@ -108,6 +107,7 @@ public class MultipartTest {
                     
                     return response.setBody("fail");
                 }
+                String boundary = request.getHeader("Content-Type").split("; boundary=")[1];
                 if(url.equals("single")) {
                     String[] parts = request.getBody().readUtf8().split(boundary);
                     if(parts.length == 3 && parts[0].equals("--") && parts[2].trim().equals("--")) {
