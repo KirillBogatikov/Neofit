@@ -1,5 +1,6 @@
 package org.cuba.neofit;
 
+import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.List;
@@ -113,6 +114,11 @@ public class Neofit {
                     @Override
                     public Executor callbackExecutor() {
                         return callbackExecutor;
+                    }
+
+                    @Override
+                    public boolean isDefault(Method method) {
+                        return method.isDefault();
                     }
                     
                 };
