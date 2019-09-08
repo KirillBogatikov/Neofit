@@ -114,13 +114,13 @@ public class ServiceMethod {
         formItems = new ArrayList<>();
         parts = new ArrayList<>();
         
-        Parameter[] parameters = method.getParameters();
+        Class<?>[] parameters = method.getParameterTypes();
         for(int i = 0; i < parameters.length; i++) {
-            Parameter param = parameters[i];
+            Class<?> param = parameters[i];
             
             Header header = param.getAnnotation(Header.class);
             if(header != null) {
-                headers.add(new RequestHeader(header.value(), param.getParameterizedType(), i));
+                headers.add(new RequestHeader(header.value(), param, i));
                 continue;
             }
             
@@ -136,7 +136,7 @@ public class ServiceMethod {
                     throw new NeofitException("GET and HEAD requests can not has any body");
                 }
                 
-                this.body = new PlainBody(body.contentType(), param.getParameterizedType(), i);
+                this.body = new PlainBody(body.contentType(), param, i);
                 continue;
             }
             
@@ -152,7 +152,7 @@ public class ServiceMethod {
                     throw new NeofitException("GET and HEAD requests can not has any body");
                 }
                 
-                this.parts.add(new MultipartItem(part.value(), part.contentType(), param.getParameterizedType(), i));
+                this.parts.add(new MultipartItem(part.value(), part.contentType(), param, i));
                 continue;
             }
             
@@ -168,13 +168,13 @@ public class ServiceMethod {
                     throw new NeofitException("GET and HEAD requests can not has any body");
                 }
                 
-                this.formItems.add(new FormDataItem(formItem.value(), param.getParameterizedType(), i));
+                this.formItems.add(new FormDataItem(formItem.value(), param, i));
                 continue;
             }
             
             Query query = param.getAnnotation(Query.class);
             if(query != null) {
-                this.queries.add(new UrlQuery(query.value(), param.getParameterizedType(), i));
+                this.queries.add(new UrlQuery(query.value(), param, i));
                 continue;
             }
             
