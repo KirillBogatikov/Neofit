@@ -1,15 +1,15 @@
 package org.cuba.neofit;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import org.cuba.neofit.NeoPlatform;
-
 public class Android extends NeoPlatform {
     private Executor requestExecutor, callbackExecutor;
+    private int apiVersionCode;
     
     public Android() {
         requestExecutor = Executors.newFixedThreadPool(4);
@@ -33,6 +33,14 @@ public class Android extends NeoPlatform {
         } catch (Throwable e) {
             throw new RuntimeException(e);
         }
+        
+        try {
+            Class<?> version = Class.forName("android.os.Build.VERSION");
+            Field sdkIntField = version.getDeclaredField("SDK_INT");
+            apiVersionCode = (int)(sdkIntField.get(null));
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -43,6 +51,14 @@ public class Android extends NeoPlatform {
     @Override
     public Executor callbackExecutor() {
         return callbackExecutor;
+    }
+
+    @Override
+    public boolean isDefault(Method method) {
+        if(apiVersionCode >= 24) {
+            return method.isDefault();
+        }
+        return false;
     }
 
 }
