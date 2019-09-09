@@ -11,6 +11,9 @@ public class NeoCall {
     private Executor requestExecutor, callbackExecutor;
     private ConverterManager converter;
     private Call call;
+    private String syncLockerObject = "oh my god, only not dead-lock, please";
+    private NeoResponse syncResponse;
+    private IOException syncThrowable;
         
     public NeoCall(Call call, NeoPlatform platform, ConverterManager converter) {
         this.call = call;
@@ -20,7 +23,32 @@ public class NeoCall {
     }
     
     public NeoResponse sync() throws IOException {
-        return new NeoResponse(call.execute(), converter);
+        syncThrowable = null;
+        requestExecutor.execute(() -> { 
+            try {
+                syncResponse = new NeoResponse(call.execute(), converter);
+            } catch (IOException e) {
+                syncThrowable = e;
+            }
+            
+            synchronized(syncLockerObject) {
+                syncLockerObject.notifyAll();    
+            }
+        });
+        
+        synchronized(syncLockerObject) {
+            try {
+                syncLockerObject.wait();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        
+        if(syncThrowable != null) {
+            throw syncThrowable;
+        }
+        
+        return syncResponse;
     }
     
     public Request getHttpRequest() {
